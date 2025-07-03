@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: worker-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Torque-Lab/mointering.git
+    targetRevision: main
+    path: mointering/charts/backend
+    helm:
+      parameters:
+        - name: image.repository
+          value: ring0exec/worker-backend
+        - name: image.tag
+          value: latest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backend
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
