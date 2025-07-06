@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.express.image.repository }}:{{ .Values.express.image.tag | default .Chart.AppVersion | quote }}
+          image: {{ .Values.express.image.repository }}:{{ .Values.express.image.tag | default .Chart.AppVersion }}
           imagePullPolicy: {{ .Values.express.image.pullPolicy }}
           imagePullSecrets:
             - name: {{ .Values.express.image.pullSecret }}

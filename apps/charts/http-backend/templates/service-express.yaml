@@ -4,7 +4,7 @@ metadata:
   name: express-service
 spec:
   selector:
-    app: express
+    app: {{ .Chart.Name }}
   ports:
     - protocol: TCP
       name: {{ .Values.express.ports.name }}

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.nextjs.image.repository }}:{{ .Values.nextjs.image.tag | default .Chart.AppVersion | quote }}
+          image: {{ .Values.nextjs.image.repository }}:{{ .Values.nextjs.image.tag | default .Chart.AppVersion }}
           imagePullPolicy: {{ .Values.nextjs.image.pullPolicy }}
           ports:
             - name: {{ .Values.nextjs.ports.name }}
