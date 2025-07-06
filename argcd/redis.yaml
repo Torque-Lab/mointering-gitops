@@ -1,19 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: http-backend
+  name: redis
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-options: CreateNamespace=true  # Create the namespace=backend if it doesn't exist 
+    argocd.argoproj.io/sync-options: CreateNamespace=true
 spec:
   project: default
   source:
-    repoURL: https://github.com/Torque-Lab/mointering.git
+    repoURL: https://github.com/Torque-Lab/mointering-gitops.git
     targetRevision: main
-    path: charts/http-backend
-    helm:
-      valueFiles:
-        - updated_images/express-values.yaml
+    path: apps/charts/redis
+    directory:
+      recurse: true 
   destination:
     server: https://kubernetes.default.svc
     namespace: backend

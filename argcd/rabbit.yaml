@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mointering-root
+  name: rabbit
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true
 spec:
   project: default
   source:
     repoURL: https://github.com/Torque-Lab/mointering-gitops.git
     targetRevision: main
-    path: apps
+    path: apps/charts/rabbitmq
     directory:
       recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: backend
   syncPolicy:
     automated:
       prune: true

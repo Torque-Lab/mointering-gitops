@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: frontend  
+  name: worker-backend
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-options: CreateNamespace=true
+    argocd.argoproj.io/sync-options: CreateNamespace=true 
 spec:
   project: default
   source:
-    repoURL: https://github.com/Torque-Lab/mointering.git
+    repoURL: https://github.com/Torque-Lab/mointering-gitops.git
     targetRevision: main
-    path: charts/frontend
-    helm:
-      valueFiles:
-        - updated_images/frontend-values.yaml
+    path: apps/charts/worker-backend
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: frontend
+    namespace: backend
   syncPolicy:
     automated:
       prune: true
