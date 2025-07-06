@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Torque-Lab/mointering-gitops.git
-    path: argcd/apps  
+    path: argocd/apps  
     targetRevision: main
     directory:
       recurse: true
