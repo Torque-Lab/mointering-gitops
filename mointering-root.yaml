@@ -7,10 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Torque-Lab/mointering-gitops.git
-    path: argocd/apps  
+    path: argocd
     targetRevision: main
-    directory:
-      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: backend
