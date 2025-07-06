@@ -1,0 +1,3 @@
+worker:
+  image:
+    tag: 782fef11721a4d8566170775b9f335867af0f2aa

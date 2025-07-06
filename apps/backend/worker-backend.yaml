@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: worker-backend
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: CreateNamespace=true 
 spec:
   project: default
   source:
@@ -10,11 +12,8 @@ spec:
     targetRevision: main
     path: mointering/charts/worker-backend
     helm:
-      parameters:
-        - name: image.repository
-          value: ring0exec/worker-backend
-        - name: image.tag
-          value: latest
+      valuesFiles:
+        - apps/backend/updated_images/worker-values.yaml  
   destination:
     server: https://kubernetes.default.svc
     namespace: backend
