@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/Torque-Lab/mointering.git
     targetRevision: main
-    path: mointering/charts/frontend
+    path: charts/frontend
     helm:
       valuesFiles:
-        - apps/frontend/updated_images/frontend-values.yaml
+        - updated_images/frontend-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: frontend

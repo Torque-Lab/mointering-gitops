@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/Torque-Lab/mointering.git
     targetRevision: main
-    path: mointering/charts/http-backend
+    path: charts/http-backend
     helm:
       valuesFiles:
-        - apps/backend/updated_images/express-values.yaml
+        - updated_images/express-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: backend

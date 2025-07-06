@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Torque-Lab/mointering.git
     targetRevision: main
-    path: mointering/charts/ingress
+    path: charts/ingress
   destination:
     server: https://kubernetes.default.svc
     namespace: backend
