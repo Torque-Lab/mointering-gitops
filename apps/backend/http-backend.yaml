@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: charts/http-backend
     helm:
-      valuesFiles:
+      valueFiles:
         - updated_images/express-values.yaml
   destination:
     server: https://kubernetes.default.svc

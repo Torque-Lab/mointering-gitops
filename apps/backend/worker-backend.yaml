@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: charts/worker-backend
     helm:
-      valuesFiles:
+      valueFiles:
         - updated_images/worker-values.yaml  
   destination:
     server: https://kubernetes.default.svc
