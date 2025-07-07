@@ -29,11 +29,11 @@ spec:
                 secretKeyRef:
                   name: global-secrets
                   key: NEXT_PUBLIC_ENV
-                  namespace: backend
+                  namespace: default
             - name: NEXT_PUBLIC_URL
               valueFrom:
                 secretKeyRef:
                   name: global-secrets
                   key: NEXT_PUBLIC_URL
-                  namespace: backend
+                  namespace: default
   
