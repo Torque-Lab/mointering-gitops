@@ -9,7 +9,7 @@ rabbitmq:
         name: amqp
         port: 5672
         containerPort: 5672
-    syncWave: "-24"
+    syncWave: "-28"
 
     resources:
         requests:

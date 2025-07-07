@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nextjs-service
+  annotations:
+    argocd.argoproj.io/sync-wave: "-21" 
 spec:
   selector:
     app: nextjs

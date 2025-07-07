@@ -7,4 +7,4 @@ redis:
   ports:
     port: 6379
     containerPort: 6379
-  syncWave: "-25"
+  syncWave: "-30"
