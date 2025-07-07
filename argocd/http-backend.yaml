@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: http-backend
+  name: express
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: CreateNamespace=true  # Create the namespace=backend if it doesn't exist 

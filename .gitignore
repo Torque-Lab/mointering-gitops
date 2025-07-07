@@ -1,3 +1,4 @@
 # gitignore for mointering-gitops
 
 secret.yml
+secret.yaml
