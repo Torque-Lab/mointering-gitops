@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nextjs-service
+  namespace: backend #  we are making this service in backend namespace because ingress not support cross namespace service routing
   annotations:
-    argocd.argoproj.io/sync-wave: "-21" 
+    argocd.argoproj.io/sync-wave: "-21"
 spec:
   selector:
     app: nextjs
@@ -12,4 +13,4 @@ spec:
       name: {{ .Values.nextjs.ports.name }}
       port: {{ .Values.nextjs.ports.port }}
       targetPort: {{ .Values.nextjs.ports.containerPort }}
-type: ClusterIP
+  type: ClusterIP
