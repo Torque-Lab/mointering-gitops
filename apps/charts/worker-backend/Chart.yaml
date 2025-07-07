@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: worker
 description: A Helm chart for worker backend application
 type: application
