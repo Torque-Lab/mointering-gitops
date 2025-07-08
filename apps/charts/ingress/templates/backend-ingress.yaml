@@ -4,6 +4,7 @@ metadata:
   name: nginx-ingress
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
+    namespace: backend
 spec:
   ingressClassName: nginx
   rules:
