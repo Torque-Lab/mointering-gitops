@@ -2,7 +2,7 @@ worker:
     replicasCount: 1
     image:
         repository: ring0exec/worker-backend
-        tag: 5645e6deb6cf1fc2a2ce0e546adff8b467ffabd6
+        tag: cea23282d687e9291650db0eb28884fc0eb28510
         pullPolicy: Always
         pullSecret: regcred
     ports:
