@@ -2,7 +2,7 @@ nextjs:
     replicasCount: 1
     image:
         repository: ring0exec/frontend
-        tag: 77e1e7a936e6ee235f91892ddfb3a3e3cfdbd264
+        tag: 2f7ee4d0611ece2f44a68caf88046fc78c8dd86b
         pullPolicy: Always
         pullSecret: regcred
     ports:
