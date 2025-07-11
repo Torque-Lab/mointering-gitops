@@ -4,9 +4,14 @@ metadata:
   name: nginx-ingress
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
   namespace: frontend
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - sitewatch.suvidhaportal.com
+      secretName: sitewatch-tls
   rules:
     - host: sitewatch.suvidhaportal.com
       http:
