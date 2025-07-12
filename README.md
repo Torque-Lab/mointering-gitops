@@ -15,17 +15,37 @@ This repository follows the GitOps pattern using ArgoCD to manage the deployment
 
 ```
 .
+├── argocd/
+│   ├── frontend.yaml        # ArgoCD Application for the frontend Helm chart
+│   ├── http-backend.yaml    # ArgoCD Application for the HTTP API service
+│   ├── worker-backend.yaml  # ArgoCD Application for the background worker
+│   ├── redis.yaml           # ArgoCD Application for Redis
+│   ├── rabbit.yaml          # ArgoCD Application for RabbitMQ
+│   └── ingress.yaml         # ArgoCD Application for ingress rules
 ├── apps/
-│   ├── UI/
-│   │   └── frontend.yaml    # Frontend application definition
-│   ├── backend/
-│   │   ├── http-backend.yaml    # HTTP API service
-│   │   ├── worker-backend.yaml  # Background worker service
-│   │   ├── redis.yaml          # Redis cache
-│   │   └── rabbit.yaml         # RabbitMQ message broker
-│   └── roots.yaml             # Root application that discovers other apps
+│   └── charts/              # In-house Helm charts
+│       ├── frontend/
+│       ├── global/
+│       ├── http-backend/
+│       ├── worker-backend/
+│       ├── redis/
+│       ├── rabbitmq/
+│       └── ingress/
+├── mointering-root.yaml     # Root ArgoCD Application that bootstraps all of the above
+└── README.md
 ```
 
+### Some decisions why made so
+1. You will see  that  we have two ingress one for frontend and one for backend and two sealed secrets one for frontend and one for backend, you will be wondering why we have two ingress and two sealed secrets, the reason is that  ingress can't route traffic to different namespace as our backend is in backend namespace and frontend is in frontend namespace, and sealed secrets can't be used shared b/t namespaces, so we have to create two ingress and two sealed secrets one for frontend and one for backend
+i.e moral of the story ingress can't reach service in different namespace and k8s not allow sharing sealed secrets b/t namespaces normally
+2. our goal is to separate frontend and backend into different namespaces for better security and isolation
+3. we have to create two sealed secrets one for frontend and one for backend
+
+### some fun facts
+1. frontend is in nextjs and backend is in express nodejs and they still available by same domain without causing any requirement of CORS
+e.g  frontend is in https://sitewatch.suvidhaportal.com and backend is in https://sitewatch.suvidhaportal.com/api/, and note no any security, i repeat no means no security issue and this mimic like nextjs backend system being in same domain and still separated
+3. you will be wondering why this whole drama because i hate nextjs as backend system so i found solution to make it work in same domain,my sytem will totally behave like they are couple together but still separated
+4. more details visit source repo https://github.com/Torque-Lab/mointering
 ## Prerequisites
 
 - Kubernetes cluster with ArgoCD installed
@@ -48,7 +68,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 The root application will automatically discover and deploy all other applications:
 
 ```bash
-kubectl apply -f apps/roots.yaml
+kubectl apply -f mointering-root.yaml
 ```
 
 ### 3. Access ArgoCD UI
@@ -65,19 +85,19 @@ Then open https://localhost:8080 in your browser.
 ### Frontend
 
 - **Namespace**: `frontend`
-- **Image**: `ring0exec/frontend:latest`
+- **Image**: `ring0exec/frontend:tag`
 - **Source**: [GitHub - mointering/frontend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/frontend)
 
 ### Backend Services
 
 #### HTTP Backend
 - **Namespace**: `backend`
-- **Image**: `ring0exec/http-backend:latest`
+- **Image**: `ring0exec/http-backend:tag`
 - **Source**: [GitHub - mointering/http-backend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/http-backend)
 
 #### Worker Backend
 - **Namespace**: `backend`
-- **Image**: `ring0exec/worker-backend:latest`
+- **Image**: `ring0exec/worker-backend:tag`
 - **Source**: [GitHub - mointering/backend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/backend)
 
 ### Dependencies
@@ -141,3 +161,4 @@ argocd app logs <app-name>
 ```bash
 argocd app sync <app-name>
 ```
+
