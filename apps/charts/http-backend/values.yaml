@@ -2,7 +2,7 @@ express:
     replicasCount: 1
     image:
         repository: ring0exec/http-backend
-        tag: 1517fc64209a26b40368cc8f8c29d57b68ec4664
+        tag: 24bca936154c6d598badc329bd7048b9869d64cd
         pullPolicy: Always
         pullSecret: regcred
     ports:
