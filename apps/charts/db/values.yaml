@@ -1,0 +1,26 @@
+postgres:
+    replicasCount: 1
+    image:
+        repository: postgres
+        tag: latest
+        pullPolicy: Always
+        pullSecret: regcred
+    name: postgres
+    resources:
+        requests:
+            cpu: "100m"
+            memory: "256Mi"
+        limits:
+            cpu: "500m"
+            memory: "1Gi"
+    autoscaling:
+        enabled: true
+        minReplicas: 1
+        maxReplicas: 2
+        targetCPUUtilizationPercentage: 80
+        targetMemoryUtilizationPercentage: 80
+    service:
+        port: 5432
+        targetPort: 5432
+        type: ClusterIP
+    storage: 5Gi
