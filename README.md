@@ -9,6 +9,7 @@ This repository follows the GitOps pattern using ArgoCD to manage the deployment
 - Frontend service
 - Backend services (HTTP API and Worker)
 - Redis cache
+- Postgres database
 - RabbitMQ message broker
 
 ## Repository Structure
@@ -20,6 +21,7 @@ This repository follows the GitOps pattern using ArgoCD to manage the deployment
 │   ├── http-backend.yaml    # ArgoCD Application for the HTTP API service
 │   ├── worker-backend.yaml  # ArgoCD Application for the background worker
 │   ├── redis.yaml           # ArgoCD Application for Redis
+│   ├── postgres.yaml        # ArgoCD Application for Postgres
 │   ├── rabbit.yaml          # ArgoCD Application for RabbitMQ
 │   └── ingress.yaml         # ArgoCD Application for ingress rules
 ├── apps/
@@ -29,6 +31,7 @@ This repository follows the GitOps pattern using ArgoCD to manage the deployment
 │       ├── http-backend/
 │       ├── worker-backend/
 │       ├── redis/
+│       ├── db/
 │       ├── rabbitmq/
 │       └── ingress/
 ├── mointering-root.yaml     # Root ArgoCD Application that bootstraps all of the above
@@ -86,29 +89,27 @@ Then open https://localhost:8080 in your browser.
 
 - **Namespace**: `frontend`
 - **Image**: `ring0exec/frontend:tag`
-- **Source**: [GitHub - mointering/frontend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/frontend)
 
 ### Backend Services
 
 #### HTTP Backend
 - **Namespace**: `backend`
 - **Image**: `ring0exec/http-backend:tag`
-- **Source**: [GitHub - mointering/http-backend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/http-backend)
 
 #### Worker Backend
 - **Namespace**: `backend`
 - **Image**: `ring0exec/worker-backend:tag`
-- **Source**: [GitHub - mointering/backend](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/backend)
 
 ### Dependencies
 
 #### Redis
 - **Namespace**: `backend`
-- **Source**: [GitHub - mointering/redis](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/redis)
 
 #### RabbitMQ
 - **Namespace**: `backend`
-- **Source**: [GitHub - mointering/rabbitmq](https://github.com/Torque-Lab/mointering/tree/main/mointering/charts/rabbitmq)
+
+#### Postgres
+- **Namespace**: `backend`
 
 ## CI/CD Pipeline & Image Management
 
