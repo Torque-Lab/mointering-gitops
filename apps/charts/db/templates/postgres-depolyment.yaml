@@ -34,8 +34,10 @@ spec:
                 secretKeyRef:
                   name: global-secrets
                   key: POSTGRES_DB
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata 
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data/pgdata
+            - mountPath: /var/lib/postgresql/data      
               name: {{ .Values.postgres.name }}-data
       volumes:
         - name: {{ .Values.postgres.name }}-data
