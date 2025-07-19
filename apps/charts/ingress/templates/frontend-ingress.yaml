@@ -2,10 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Chart.Name }}
+  namespace: {{ .Values.frontendPoint.namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-  namespace: frontend
 spec:
   ingressClassName: {{ .Values.ingressClassName }}
   tls:

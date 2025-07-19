@@ -1,10 +1,12 @@
 backendPoint:
     host: sitewatch.suvidhaportal.com
     service: express-service
+    namespace: backend
     port: 3001
 ingressClassName: nginx
 frontendPoint:
     host: sitewatch.suvidhaportal.com
     service: nextjs-service
+    namespace: frontend
     port: 3000
     secret: sitewatch

@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Chart.Name }}
+  namespace: {{ .Values.backendPoint.namespace }}
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
-    namespace: backend
 spec:
   ingressClassName: {{ .Values.ingressClassName }}
   rules:
