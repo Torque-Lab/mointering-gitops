@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: rabbitmq
 description: A Helm chart for RabbitMQ
 type: application

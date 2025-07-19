@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 name: nextjs
 description: A Helm chart for Next.js application
 type: application

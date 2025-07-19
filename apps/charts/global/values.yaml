@@ -1,0 +1,6 @@
+backendPoint:
+  name: backend
+  namespace: backend
+frontendPoint:
+  name: frontend
+  namespace: frontend

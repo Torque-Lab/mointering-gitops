@@ -1,27 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: {{ .Chart.Name }}
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
     namespace: backend
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingressClassName }}
   rules:
-    - host: sitewatch.suvidhaportal.com
+    - host: {{ .Values.backendPoint.host }}
       http:
         paths:
-          # - path: /
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: nextjs-service
-          #       port:
-          #         number: 3000 
           - path: /api
             pathType: Prefix
             backend:
               service:
-                name: express-service
+                name: {{ .Values.backendPoint.service }}
                 port:
-                  number: 3001
+                  number: {{ .Values.backendPoint.port }}

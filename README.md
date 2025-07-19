@@ -17,7 +17,8 @@ This repository follows the GitOps pattern using ArgoCD to manage the deployment
 ```
 .
 ├── argocd/
-│   ├── frontend.yaml        # ArgoCD Application for the frontend Helm chart
+│   ├── frontend.yaml   
+│   ├── global-sealed-secret.yaml     # ArgoCD Application for the global sealed secret
 │   ├── http-backend.yaml    # ArgoCD Application for the HTTP API service
 │   ├── worker-backend.yaml  # ArgoCD Application for the background worker
 │   ├── redis.yaml           # ArgoCD Application for Redis
