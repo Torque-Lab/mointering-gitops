@@ -8,4 +8,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.postgres.storage }}
-  storageClassName: standard
+  storageClassName: standard-rwo
+
