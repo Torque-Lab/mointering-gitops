@@ -22,8 +22,8 @@ spec:
           resources:
             {{- toYaml .Values.rabbitmq.resources | nindent 12 }}
           securityContext:
-            allowPrivilegeEscalation: true
-            readOnlyRootFilesystem: false
+            # allowPrivilegeEscalation: true
+            # readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
             seccompProfile:

@@ -19,6 +19,9 @@ spec:
           ports:
             - containerPort: 5432
           securityContext:
+            runAsUser: 999
+            runAsGroup: 999
+            fsGroup: 999
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
