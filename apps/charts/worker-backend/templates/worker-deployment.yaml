@@ -26,6 +26,13 @@ spec:
               containerPort: {{ .Values.worker.ports.containerPort }}
           resources:
             {{- toYaml .Values.worker.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           env:
             - name: RABBITMQ_URL
               valueFrom:

@@ -28,6 +28,13 @@ spec:
               containerPort: {{ .Values.express.ports.containerPort }}
           resources:
             {{- toYaml .Values.express.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           env:
             - name: REDIS_URL
               valueFrom:

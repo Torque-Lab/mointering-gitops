@@ -25,6 +25,13 @@ spec:
               containerPort: {{ .Values.nextjs.ports.containerPort }}
           resources:
             {{- toYaml .Values.nextjs.resources | nindent 12 }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+            seccompProfile:
+              type: RuntimeDefault
           env:
             - name: NEXT_PUBLIC_ENV
               valueFrom:
